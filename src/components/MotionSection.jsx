@@ -4,34 +4,28 @@ import SkewCard from './SkewCard';
 
 const BlurredAtmosphere = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      <motion.div
-        animate={{
-          x: [0, 150, -50, 0],
-          y: [0, 80, 120, 0],
-          scale: [1, 1.2, 0.9, 1]
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-white/[0.03] blur-[140px]"
-      />
-      <motion.div
-        animate={{
-          x: [0, -120, 80, 0],
-          y: [0, -100, -50, 0],
-          scale: [1, 0.8, 1.1, 1]
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute bottom-1/4 right-1/4 w-[700px] h-[700px] rounded-full bg-white/[0.02] blur-[160px]"
-      />
-    </div>
+    <section id="motion" className="relative py-32 bg-[#050505] min-h-screen flex flex-col justify-center overflow-hidden px-6">
+      <BlurredAtmosphere />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        <div className="mb-20">
+          <h2 className="text-sm font-light tracking-[0.5em] text-white/30 uppercase mb-4">02 — Motion studies</h2>
+          <div className="h-px w-12 bg-white/20" />
+        </div>
+
+        {/* FIXED: grid-cols instead of flex to force them to stay apart */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-12 justify-items-center">
+          {motionStudies.map((study, idx) => (
+            <SkewCard 
+              key={idx} 
+              title={study.title} 
+              desc={study.desc} 
+              index={idx}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
