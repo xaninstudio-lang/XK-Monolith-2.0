@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate"; /* Add this line */html {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Ensures the scroll stops exactly at the top of the section */
+section {
+  scroll-margin-top: 80px; 
+}
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
