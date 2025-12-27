@@ -66,16 +66,18 @@ export default function MotionSection() {
           <div className="h-px w-12 bg-white/20" />
         </div>
 
-        {/* FIXED: Added a more stable grid/flex container to prevent breaking */}
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 w-full">
+        {/* FIXED: We use 'flex-wrap' but with a 'gap' that accounts for card size.
+          The 'items-stretch' ensures all cards stay the same height.
+        */}
+        <div className="flex flex-wrap justify-center items-stretch gap-12 lg:gap-8 w-full">
           {motionStudies.map((study, idx) => (
-            <div key={idx} className="w-full lg:w-1/3 flex justify-center">
-              <SkewCard 
-                title={study.title} 
-                desc={study.desc} 
-                index={idx}
-              />
-            </div>
+            // Removed the w-1/3 wrapper to let the SkewCard's own responsive width handle the layout
+            <SkewCard 
+              key={idx} 
+              title={study.title} 
+              desc={study.desc} 
+              index={idx}
+            />
           ))}
         </div>
       </div>
