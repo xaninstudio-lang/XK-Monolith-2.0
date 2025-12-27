@@ -2,11 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SkewCard from './SkewCard';
 
-// This creates the "Moving Blurry Background"
 const BlurredAtmosphere = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Orb 1: Soft light moving slowly */}
       <motion.div
         animate={{
           x: [0, 150, -50, 0],
@@ -20,8 +18,6 @@ const BlurredAtmosphere = () => {
         }}
         className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-white/[0.03] blur-[140px]"
       />
-
-      {/* Orb 2: Counter-movement at the bottom */}
       <motion.div
         animate={{
           x: [0, -120, 80, 0],
@@ -56,24 +52,30 @@ export default function MotionSection() {
   ];
 
   return (
-    <section id="motion" className="relative py-32 bg-[#050505] px-6 md:px-20 min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Background Effect Layer */}
+    <section 
+      id="motion" 
+      className="relative py-32 bg-[#050505] min-h-screen flex flex-col justify-center overflow-hidden"
+    >
       <BlurredAtmosphere />
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-20 relative z-10">
         <div className="mb-20">
-          <h2 className="text-sm font-light tracking-[0.5em] text-white/30 uppercase mb-4">02 — Motion studies</h2>
+          <h2 className="text-sm font-light tracking-[0.5em] text-white/30 uppercase mb-4">
+            02 — Motion studies
+          </h2>
           <div className="h-px w-12 bg-white/20" />
         </div>
 
-        <div className="flex justify-center items-center flex-wrap gap-12 lg:gap-4">
+        {/* FIXED: Added a more stable grid/flex container to prevent breaking */}
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 w-full">
           {motionStudies.map((study, idx) => (
-            <SkewCard 
-              key={idx} 
-              title={study.title} 
-              desc={study.desc} 
-              index={idx}
-            />
+            <div key={idx} className="w-full lg:w-1/3 flex justify-center">
+              <SkewCard 
+                title={study.title} 
+                desc={study.desc} 
+                index={idx}
+              />
+            </div>
           ))}
         </div>
       </div>
